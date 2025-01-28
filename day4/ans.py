@@ -117,8 +117,21 @@ def find_xmas(grid:list[list[str]]):
     return sum
 
 
+def find_x_mas(grid:list[list[str]]):
+    rows = len(grid)
+    cols = len(grid[0])
 
-
+    sum = 0
+    key = ["M","S"]
+    for i in range(1, rows - 1):
+        for j in range(1, cols - 1):
+            if grid[i][j] == 'A':
+                set_1 = set([grid[i - 1][j-1],grid[i+1][j+1]])
+                set_2 =set([grid[i-1][j+1],grid[i+1][j-1]])
+                
+                if set_1 == set(key) and set_2 == set(key):
+                    sum += 1
+    return sum
 
 
 
@@ -135,4 +148,6 @@ if __name__ == "__main__":
     
     ans =find_xmas(grid)
     print("Total number of XMAS: {}".format(ans))
+    part2_ans = find_x_mas(grid)
+    print("Total number of X-MAS: {}".format(part2_ans))
 
